@@ -16,7 +16,7 @@
         NSStatusItem *statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:STATUS_ITEM_VIEW_WIDTH];
         _statusItemView = [[StatusItemView alloc] initWithStatusItem:statusItem];
         _statusItemView.image = [NSImage imageNamed:@"camel"];
-        _statusItemView.alternateImage = [NSImage imageNamed:@"camel"];
+        _statusItemView.alternateImage = [NSImage imageNamed:@"camel-active"];
         _statusItemView.action = @selector(togglePanel:);
     }
     return self;

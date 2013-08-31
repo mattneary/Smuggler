@@ -39,7 +39,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	[self.statusItem drawStatusBarBackgroundInRect:dirtyRect withHighlight:self.isHighlighted];
+    [self.statusItem drawStatusBarBackgroundInRect:dirtyRect withHighlight:NO];
     
     NSImage *icon = self.isHighlighted ? self.alternateImage : self.image;
     NSSize iconSize = [icon size];
