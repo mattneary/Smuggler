@@ -34,6 +34,9 @@ void *kContextActivePanel = &kContextActivePanel;
 
 #pragma mark - NSApplicationDelegate
 
+- (void)resetImage {
+    self.menubarController.hasActiveIcon = NO;
+}
 - (void)sentText {
     NSArray *arguments = [[NSProcessInfo processInfo] arguments];
     NSString *script = [NSString stringWithFormat:
@@ -46,7 +49,7 @@ void *kContextActivePanel = &kContextActivePanel;
     NSAppleScript *start = [[NSAppleScript alloc] initWithSource:script];
     self.menubarController.hasActiveIcon = YES;
     [start executeAndReturnError:nil];
-    self.menubarController.hasActiveIcon = NO;
+    [self performSelector:@selector(resetImage) withObject:nil afterDelay:2];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
