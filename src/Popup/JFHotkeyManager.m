@@ -26,11 +26,11 @@ static NSMutableDictionary *keyMap;
 static NSMutableDictionary *modMap;
 
 static void mapKey(NSString *s, NSUInteger key) {
-	[keyMap setObject:[NSNumber numberWithUnsignedInt:key] forKey:s];
+	[keyMap setObject:[NSNumber numberWithUnsignedInt:(unsigned int)key] forKey:s];
 }
 
 static void mapMod(NSString *s, NSUInteger mod) {
-	[modMap setObject:[NSNumber numberWithUnsignedInt:mod] forKey:s];
+	[modMap setObject:[NSNumber numberWithUnsignedInt:(unsigned int)mod] forKey:s];
 }
 
 
@@ -43,9 +43,9 @@ static void mapMod(NSString *s, NSUInteger mod) {
 	if (self = [super init]) {
 		
 		EventHotKeyID kID;
-		kID.id = kID.signature = hotkeyID;
+		kID.id = kID.signature = (unsigned int)hotkeyID;
 		
-		RegisterEventHotKey(keyRef, modifiers, kID, GetApplicationEventTarget(), 0, &_ref);
+		RegisterEventHotKey((unsigned int)keyRef, (unsigned int)modifiers, kID, GetApplicationEventTarget(), 0, &_ref);
 		
 		_target = target;
 		_action = selector;
@@ -247,7 +247,7 @@ static void mapMod(NSString *s, NSUInteger mod) {
 												   target:target
 												   action:selector];
 	
-	[_hotkeys setObject:hk forKey:[NSNumber numberWithUnsignedInt:keyID]];
+	[_hotkeys setObject:hk forKey:[NSNumber numberWithUnsignedInt:(unsigned int)keyID]];
 	[hk release];
 	
 	return keyID;
@@ -255,11 +255,11 @@ static void mapMod(NSString *s, NSUInteger mod) {
 }
 
 - (void)unbind:(JFHotKeyRef)keyRef {
-	[_hotkeys removeObjectForKey:[NSNumber numberWithUnsignedInt:keyRef]];
+	[_hotkeys removeObjectForKey:[NSNumber numberWithUnsignedInt:(unsigned int)keyRef]];
 }
 
 - (void)_dispatch:(NSUInteger)hotkeyId {
-	[[_hotkeys objectForKey:[NSNumber numberWithUnsignedInt:hotkeyId]] invoke];
+	[[_hotkeys objectForKey:[NSNumber numberWithUnsignedInt:(unsigned int)hotkeyId]] invoke];
 }
 
 @end
